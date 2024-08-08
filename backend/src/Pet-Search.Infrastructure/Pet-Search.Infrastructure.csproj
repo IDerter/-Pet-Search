@@ -7,4 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Pet-Search.Application\Pet-Search.Application.csproj" />
+  </ItemGroup>
+
 </Project>
