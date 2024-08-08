@@ -17,7 +17,7 @@
         public DateOnly DateOfBirth { get; } = DateOnly.MinValue;
         public bool IsVaccinated { get; } = false;
         public Status Status { get; } = new Status();
-        public List<Requisites> Requisites { get; } = new List<Requisites>();
+        public List<Requisites> Requisites { get; } = [];
         public DateTime CreatedDate { get; } = DateTime.Now;
 
     }
