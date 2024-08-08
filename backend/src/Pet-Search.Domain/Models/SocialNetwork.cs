@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Pet_Search.Domain.Models
 {
-    public class Requisites
-    {
-	    public string Name { get; } = string.Empty;
-        public string Description { get; } = string.Empty;
-    }
+	public class SocialNetwork
+	{
+		public string Link { get; } = string.Empty;
+		public string Name { get; } = string.Empty;
+	}
 }

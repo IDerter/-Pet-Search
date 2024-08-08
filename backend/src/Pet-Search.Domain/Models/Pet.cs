@@ -14,7 +14,7 @@
         public double Height { get; } = 0;
         public string PhoneNumber { get; } = string.Empty;
         public bool IsCastrated { get; } = false;
-        public DateTime DateOfBirth { get; } = DateTime.Now;
+        public DateOnly DateOfBirth { get; } = DateOnly.MinValue;
         public bool IsVaccinated { get; } = false;
         public Status Status { get; } = new Status();
         public List<Requisites> Requisites { get; } = new List<Requisites>();
