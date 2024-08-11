@@ -1,11 +1,11 @@
-﻿namespace Pet_Search.Domain.Models;
+﻿using Pet_Search.Domain.ValueObjects;
+
+namespace Pet_Search.Domain.Models;
 
 public class Volunteer
 {
 	public Guid Id { get; private set; }
-	public string Name { get; private set; } = string.Empty;
-	public string Surname { get; private set; } = string.Empty;
-	public string Patronymic { get; private set; } = string.Empty;
+	public FullName FullName { get; private set; } = new FullName();
 	public string Description { get; private set; } = string.Empty;
 	public int AgeExperience { get; private set; } 
 	public int PetsFoundHomeQuantity { get; private set; }  // кол-во домашних животных, к-ые нашли дом
