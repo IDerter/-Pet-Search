@@ -1,25 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Pet_Search.Domain.Models;
 
-namespace Pet_Search.Domain.Models
+public class Volunteer
 {
-	public class Volunteer
-	{
-		public Guid Id { get; }
-		public string Name { get; } = string.Empty;
-		public string Surname { get; } = string.Empty;
-		public string Patronymic { get; } = string.Empty;
-		public string Description { get; } = string.Empty;
-		public int AgeExperience { get; } = 0;
-		public int PetsFoundHomeQuantity { get; } = 0; // кол-во домашних животных, к-ые нашли дом
-		public int NumberOfPetsLookingForHome { get; } = 0; // кол-во домашних животных, к-ые ищут дом в данный момент
-		public int NumberOfPetsTreated { get; } = 0; // кол-во домашних животных, к-ые сейчас находятся на лечении
-		public string PhoneNumber { get; } = string.Empty;
-		public List<SocialNetwork> SocialNetworks { get; } = [];
-		public List<Requisites> Requisites { get; } = [];
-		public List<Pet> PetsOwnedVolunteer { get; } = [];
-	}
+	public Guid Id { get; private set; }
+	public string Name { get; private set; } = string.Empty;
+	public string Surname { get; private set; } = string.Empty;
+	public string Patronymic { get; private set; } = string.Empty;
+	public string Description { get; private set; } = string.Empty;
+	public int AgeExperience { get; private set; } 
+	public int PetsFoundHomeQuantity { get; private set; }  // кол-во домашних животных, к-ые нашли дом
+	public int NumberOfPetsLookingForHome { get; private set; } // кол-во домашних животных, к-ые ищут дом в данный момент
+	public int NumberOfPetsTreated { get; private set; } // кол-во домашних животных, к-ые сейчас находятся на лечении
+	public string PhoneNumber { get; private set; } = string.Empty;
+	public List<SocialNetwork> SocialNetworks { get; private set; } = [];
+	public List<Requisites> Requisites { get; private set; } = [];
+	public List<Pet> PetsOwnedVolunteer { get; private set; } = [];
 }

@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Pet_Search.Domain.Models;
 
-namespace Pet_Search.Domain.Models
+public class SocialNetwork
 {
-	public class SocialNetwork
-	{
-		public string Link { get; } = string.Empty;
-		public string Name { get; } = string.Empty;
-	}
+	public string Link { get; private set; } = string.Empty;
+	public string Name { get; private set; } = string.Empty;
 }
+
