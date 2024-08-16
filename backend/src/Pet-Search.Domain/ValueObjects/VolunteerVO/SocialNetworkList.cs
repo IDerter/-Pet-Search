@@ -2,5 +2,6 @@
 
 public record SocialNetworkList
 {
-	public List<SocialNetwork> Networks { get; private set; } = [];
+	public List<SocialNetwork> Networks { get; } = [];
 }
+		

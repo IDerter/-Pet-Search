@@ -2,6 +2,6 @@
 
 public record HealthInfo
 {
-	public bool IsCastrated { get; private set; } = false;
-	public bool IsVaccinated { get; private set; } = false;
+	public bool IsCastrated { get; } = false;
+	public bool IsVaccinated { get; } = false;
 }

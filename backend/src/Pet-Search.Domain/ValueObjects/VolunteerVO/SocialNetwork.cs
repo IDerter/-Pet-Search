@@ -2,7 +2,7 @@
 
 public record SocialNetwork
 {
-	public string Link { get; private set; } = string.Empty;
-	public string Name { get; private set; } = string.Empty;
+	public string Link { get; } = string.Empty;
+	public string Name { get; } = string.Empty;
 }
 

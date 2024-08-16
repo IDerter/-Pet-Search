@@ -1,10 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿namespace Pet_Search.Domain.ValueObjects;
 
-namespace Pet_Search.Domain.ValueObjects;
-
-[ComplexType]
 public record PhoneNumber
 {
-	public string CountryCode { get; private set; } = string.Empty;
-	public string AreaCode { get; private set; } = string.Empty;
+	public string CountryCode { get; } = string.Empty;
+	public string AreaCode { get; } = string.Empty;
 }

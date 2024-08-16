@@ -12,7 +12,7 @@ public class Volunteer : Entity<VolunteerId>
 	{
 	}
 
-	private Volunteer(VolunteerId id, FullName fullName, string description, int ageExperience, int petsFoundHomeQuantity,
+	private Volunteer(FullName fullName, string description, int ageExperience, int petsFoundHomeQuantity,
 		int numberOfPetsLookingForHome, int numberOfPetsTreated, PhoneNumber phoneNumber) : base(id)
 	{
 		FullName = fullName;

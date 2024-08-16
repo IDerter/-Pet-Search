@@ -2,7 +2,7 @@
 
 public record FullName
 {
-	public string Name { get; private set; } = string.Empty;
-	public string Surname { get; private set; } = string.Empty;
-	public string Patronymic { get; private set; } = string.Empty;
+	public string Name { get; } = string.Empty;
+	public string Surname { get; } = string.Empty;
+	public string Patronymic { get; } = string.Empty;
 }

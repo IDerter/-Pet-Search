@@ -11,7 +11,7 @@ public class Pet : Entity<PetId>
 	{
 	}
 
-	public Pet(PetId id, string name, string type, string description, string breed, string color, HealthInfo healthInfo,
+	public Pet(string name, string type, string description, string breed, string color, HealthInfo healthInfo,
 		Address address, double weight, double height, PhoneNumber phoneNumber, DateOnly dateOfBirth,
 		Status status, DateTime createdDate) : base(id)
 	{
