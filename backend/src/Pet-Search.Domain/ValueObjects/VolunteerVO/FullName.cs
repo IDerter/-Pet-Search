@@ -14,7 +14,4 @@ public record FullName
     public string Name { get; } = string.Empty;
     public string Surname { get; } = string.Empty;
     public string Patronymic { get; } = string.Empty;
-
-
-
 }

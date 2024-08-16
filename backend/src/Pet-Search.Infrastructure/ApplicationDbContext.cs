@@ -10,19 +10,18 @@ public class ApplicationDbContext : DbContext
 {
 	private const string DATABASENAME = "DatabasePetSearch";
 	private readonly IConfiguration _configuration;
-    public DbSet<Pet> Pets { get; set; }
-    public DbSet<Volunteer> Volunteers { get; set; }
+	public DbSet<Volunteer> Volunteers { get; set; }
 
-    public ApplicationDbContext(IConfiguration configuration)
-    {
-        _configuration = configuration;
-    }
+	public ApplicationDbContext(IConfiguration configuration)
+	{
+		_configuration = configuration;
+	}
 
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 	{
-        optionsBuilder.UseNpgsql(_configuration.GetConnectionString(DATABASENAME));
-        optionsBuilder.UseSnakeCaseNamingConvention();
-        optionsBuilder.UseLoggerFactory(CreateLoggerFactory());
+		optionsBuilder.UseNpgsql(_configuration.GetConnectionString(DATABASENAME));
+		optionsBuilder.UseSnakeCaseNamingConvention();
+		optionsBuilder.UseLoggerFactory(CreateLoggerFactory());
 	}
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -30,6 +29,9 @@ public class ApplicationDbContext : DbContext
 		modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
 	}
 
-	private ILoggerFactory CreateLoggerFactory() => 
-        LoggerFactory.Create(builder => { builder.AddConsole(); });
+	private ILoggerFactory CreateLoggerFactory() =>
+		LoggerFactory.Create(builder =>
+		{
+			builder.AddConsole();
+		});
 }

@@ -16,15 +16,15 @@ public class PetConfiguration : IEntityTypeConfiguration<Pet>
 		builder.Property(p => p.Id)
 			.HasConversion(
 				id => id.Value,
-				value => PetId.Create(value));  // запиши в бд GUID, а когда будешь возвращать значения из БД, то верни VolunteerId
+				value => PetId.Create(value));  // запиши в бд GUID, а когда будешь возвращать значения из БД, то верни PetId
 
 		builder.Property(v => v.Description)
 			.IsRequired()
 			.HasMaxLength(Constants.MAX_HIGH_LENGTH);
 
-		builder.Property (v => v.Name)
+		builder.Property(v => v.Name)
 			.IsRequired()
-			.HasMaxLength (Constants.MAX_LOW_LENGTH);
+			.HasMaxLength(Constants.MAX_LOW_LENGTH);
 
 		builder.Property(v => v.Type)
 			.IsRequired()
@@ -74,7 +74,7 @@ public class PetConfiguration : IEntityTypeConfiguration<Pet>
 				rb.Property(r => r.Name)
 				.IsRequired()
 				.HasMaxLength(Constants.MAX_LOW_LENGTH);
-				rb.Property (r => r.Description)
+				rb.Property(r => r.Description)
 				.IsRequired()
 				.HasMaxLength(Constants.MAX_HIGH_LENGTH);
 
