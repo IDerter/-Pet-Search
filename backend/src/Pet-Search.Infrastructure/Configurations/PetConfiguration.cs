@@ -38,13 +38,30 @@ public class PetConfiguration : IEntityTypeConfiguration<Pet>
 			.IsRequired()
 			.HasMaxLength(Constants.MAX_LOW_LENGTH);
 
-		builder.Property(v => v.HealthInfo)
-			.IsRequired()
-			.HasMaxLength(Constants.MAX_LOW_LENGTH);
+		builder.ComplexProperty(v => v.HealthInfo, hb =>
+		{
+			hb.Property(hb => hb.IsCastrated)
+				.IsRequired()
+				.HasMaxLength(Constants.MAX_LOW_LENGTH);
+			hb.Property(hb => hb.IsVaccinated)
+				.IsRequired()
+				.HasMaxLength(Constants.MAX_LOW_LENGTH);
+		});
 
-		builder.Property(v => v.Address)
-			.IsRequired()
-			.HasMaxLength(Constants.MAX_LOW_LENGTH);
+		builder.ComplexProperty(v => v.Address, vb =>
+		{
+			vb.Property(p => p.PostCode)
+				.IsRequired()
+				.HasMaxLength(Constants.MAX_LOW_LENGTH);
+
+			vb.Property(p => p.City)
+				.IsRequired()
+				.HasMaxLength(Constants.MAX_LOW_LENGTH);
+
+			vb.Property(p => p.Country)
+				.IsRequired()
+				.HasMaxLength(Constants.MAX_LOW_LENGTH);
+		});
 
 		builder.Property(v => v.Weight)
 			.IsRequired();
@@ -52,19 +69,19 @@ public class PetConfiguration : IEntityTypeConfiguration<Pet>
 		builder.Property(v => v.Height)
 			.IsRequired();
 
-		builder.Property(v => v.PhoneNumber)
+		builder.ComplexProperty(v => v.PhoneNumber, vb =>
+		{
+			vb.Property(vb => vb.CountryCode)
+				.IsRequired()
+				.HasMaxLength(Constants.MAX_LOW_LENGTH);
+
+			vb.Property(vb => vb.AreaCode)
 			.IsRequired()
 			.HasMaxLength(Constants.MAX_LOW_LENGTH);
-
-		builder.Property(v => v.IsCastrated)
-			.IsRequired();
+		});
 
 		builder.Property(v => v.DateOfBirth)
 			.IsRequired();
-
-		builder.Property(v => v.IsVaccinated)
-			.IsRequired();
-
 
 		builder.OwnsOne(v => v.RequisiteList, vb =>
 		{
@@ -80,6 +97,5 @@ public class PetConfiguration : IEntityTypeConfiguration<Pet>
 
 			});
 		});
-
 	}
 }

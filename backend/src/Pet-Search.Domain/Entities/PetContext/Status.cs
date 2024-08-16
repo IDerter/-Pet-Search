@@ -2,8 +2,8 @@
 
 public enum Status
 {
-    NeedsHelp,
-    LookingHoom,
-    FoundHome
+	NeedsHelp,
+	LookingHoom,
+	FoundHome
 }
 

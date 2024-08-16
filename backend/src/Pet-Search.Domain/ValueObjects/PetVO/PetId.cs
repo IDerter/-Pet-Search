@@ -7,7 +7,7 @@ public record PetId
 		Value = value;
 	}
 
-	public Guid Value { get; }
+	public Guid Value { get; private set; }
 
 	public static PetId NewPetId() => new(Guid.NewGuid());
 

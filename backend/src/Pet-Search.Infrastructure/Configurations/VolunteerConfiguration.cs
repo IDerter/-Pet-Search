@@ -46,14 +46,38 @@ public class VolunteerConfiguration : IEntityTypeConfiguration<Volunteer>
 		builder.Property(v => v.NumberOfPetsTreated)
 			.IsRequired();
 
+		builder.Property(v => v.NumberOfPetsLookingForHome)
+			.IsRequired();
+
 		builder.HasMany(v => v.PetsOwnedVolunteer)
 			.WithOne()
 			.HasForeignKey("volunteer_id");
 
+		builder.ComplexProperty(v => v.PhoneNumber, vb =>
+		{
+			vb.Property(vb => vb.CountryCode)
+				.IsRequired()
+				.HasMaxLength(Constants.MAX_LOW_LENGTH);
 
-		builder.HasMany(v => v.SocialNetworks)
-			.WithOne()
-			.HasForeignKey("volunteer_id");
+			vb.Property(vb => vb.AreaCode)
+				.IsRequired()
+				.HasMaxLength(Constants.MAX_LOW_LENGTH);
+		});
+
+		builder.OwnsOne(v => v.SocialNetworksList, vb =>
+		{
+			vb.ToJson();
+			vb.OwnsMany(sn => sn.Networks, nb =>
+			{
+				nb.Property(nb => nb.Name)
+				.IsRequired()
+				.HasMaxLength(Constants.MAX_LOW_LENGTH);
+
+				nb.Property(nb => nb.Link)
+			.IsRequired()
+			.HasMaxLength(Constants.MAX_LOW_LENGTH);
+			});
+		});
 
 		builder.OwnsOne(v => v.RequisiteList, vb =>
 		{
@@ -66,7 +90,6 @@ public class VolunteerConfiguration : IEntityTypeConfiguration<Volunteer>
 				rb.Property(r => r.Description)
 				.IsRequired()
 				.HasMaxLength(Constants.MAX_HIGH_LENGTH);
-
 			});
 		});
 	}
