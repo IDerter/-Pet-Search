@@ -7,7 +7,7 @@ namespace Pet_Search.Domain.Entities.SpeciesContext;
 
 public class Species : Entity<SpeciesId>
 {
-    public Species(SpeciesId id) : base(id)
+    private Species(SpeciesId id) : base(id)
     {
     }
 

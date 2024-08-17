@@ -18,7 +18,7 @@ public class Result
 		Error = error;
 	}
 
-	public string? Error { get; set; }
+	public string? Error { get; }
 	public bool IsSuccess { get; }
 	public bool IsFailure => !IsSuccess;
 

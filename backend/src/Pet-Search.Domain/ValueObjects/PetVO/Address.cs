@@ -27,7 +27,7 @@ public record Address
 		{
 			return "Country can not be null || more than maxLength";
 		}
-		if (!string.IsNullOrWhiteSpace(postCode) || postCode.Length > MAX_LENGTH)
+		if (string.IsNullOrWhiteSpace(postCode) || postCode.Length > MAX_LENGTH)
 		{
 			return "PostCode can not be null || more than maxLength";
 		}
