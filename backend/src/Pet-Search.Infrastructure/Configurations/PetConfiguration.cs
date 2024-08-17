@@ -2,7 +2,9 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Pet_Search.Domain.Entities.PetContext;
 using Pet_Search.Domain.Shared;
+using Pet_Search.Domain.ValueObjects.BreedVO;
 using Pet_Search.Domain.ValueObjects.PetVO;
+using Pet_Search.Domain.ValueObjects.SpeciesVO;
 
 namespace Pet_Search.Infrastructure.Configurations;
 
@@ -18,6 +20,24 @@ public class PetConfiguration : IEntityTypeConfiguration<Pet>
 				id => id.Value,
 				value => PetId.Create(value));  // запиши в бд GUID, а когда будешь возвращать значения из БД, то верни PetId
 
+		builder.ComplexProperty(p => p.SpeciesBreedId, pb =>
+		{
+			pb.Property(pb => pb.SpeciesId)
+				.HasConversion(
+					id => id.Value,
+					value => SpeciesId.Create(value))  // запиши в бд GUID, а когда будешь возвращать значения из БД, то верни SpeciesId
+				.IsRequired()
+				.HasColumnName("species_id");
+
+			pb.Property(pb => pb.BreedId)
+				.HasConversion(
+					id => id.Value,
+					value => BreedId.Create(value))  // запиши в бд GUID, а когда будешь возвращать значения из БД, то верни BreedId
+				.IsRequired()
+				.HasColumnName("breed_id");
+		});
+
+
 		builder.Property(v => v.Description)
 			.IsRequired()
 			.HasMaxLength(Constants.MAX_HIGH_LENGTH);
@@ -27,10 +47,6 @@ public class PetConfiguration : IEntityTypeConfiguration<Pet>
 			.HasMaxLength(Constants.MAX_LOW_LENGTH);
 
 		builder.Property(v => v.Type)
-			.IsRequired()
-			.HasMaxLength(Constants.MAX_LOW_LENGTH);
-
-		builder.Property(v => v.Breed)
 			.IsRequired()
 			.HasMaxLength(Constants.MAX_LOW_LENGTH);
 
@@ -52,15 +68,15 @@ public class PetConfiguration : IEntityTypeConfiguration<Pet>
 		{
 			vb.Property(p => p.PostCode)
 				.IsRequired()
-				.HasMaxLength(Constants.MAX_LOW_LENGTH);
+				.HasMaxLength(Address.MAX_LENGTH);
 
 			vb.Property(p => p.City)
 				.IsRequired()
-				.HasMaxLength(Constants.MAX_LOW_LENGTH);
+				.HasMaxLength(Address.MAX_LENGTH);
 
 			vb.Property(p => p.Country)
 				.IsRequired()
-				.HasMaxLength(Constants.MAX_LOW_LENGTH);
+				.HasMaxLength(Address.MAX_LENGTH);
 		});
 
 		builder.Property(v => v.Weight)

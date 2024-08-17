@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Pet_Search.Domain.Entities.PetContext;
+using Pet_Search.Domain.Entities.SpeciesContext;
 using Pet_Search.Domain.Entities.VolunteerContext;
 
 namespace Pet_Search.Infrastructure;
@@ -11,6 +12,7 @@ public class ApplicationDbContext : DbContext
 	private const string DATABASENAME = "DatabasePetSearch";
 	private readonly IConfiguration _configuration;
 	public DbSet<Volunteer> Volunteers { get; set; }
+	public DbSet<Species> Species { get; set; }
 
 	public ApplicationDbContext(IConfiguration configuration)
 	{

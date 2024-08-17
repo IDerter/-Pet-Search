@@ -11,14 +11,13 @@ public class Pet : Entity<PetId>
 	{
 	}
 
-	public Pet(string name, string type, string description, string breed, string color, HealthInfo healthInfo,
+	public Pet(PetId id, string name, string type, string description, string color, HealthInfo healthInfo,
 		Address address, double weight, double height, PhoneNumber phoneNumber, DateOnly dateOfBirth,
 		Status status, DateTime createdDate) : base(id)
 	{
 		Name = name;
 		Type = type;
 		Description = description;
-		Breed = breed;
 		Color = color;
 		HealthInfo = healthInfo;
 		Address = address;
@@ -30,10 +29,10 @@ public class Pet : Entity<PetId>
 		CreatedDate = createdDate;
 	}
 
+	public SpeciesBreedId SpeciesBreedId { get; private set; }
 	public string Name { get; private set; } = string.Empty;
 	public string Type { get; private set; } = string.Empty;
 	public string Description { get; private set; } = string.Empty;
-	public string Breed { get; private set; } = string.Empty;
 	public string Color { get; private set; } = string.Empty;
 	public HealthInfo HealthInfo { get; private set; }
 	public Address Address { get; private set; }
