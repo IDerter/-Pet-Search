@@ -39,7 +39,7 @@ public class CreateVolunteerHandler
 			return Errors.General.NotFound(volunteerId.Value);
 		}
 
-		var volunteerExist = await _volunteerRepository.GetByFullName(fullName.Value);
+		var volunteerExist = await _volunteerRepository.GetByFullName(phoneNumber.Value);
 		if (volunteerExist.IsSuccess)
 		{
 			return Errors.Volunteer.AlreadyExist();

@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Pet_Search.Application.Volunteers;
 using Pet_Search.Domain.Entities.VolunteerContext;
 using Pet_Search.Domain.Shared;
+using Pet_Search.Domain.ValueObjects;
 using Pet_Search.Domain.ValueObjects.VolunteerVO;
 
 namespace Pet_Search.Infrastructure.Repositories;
@@ -37,9 +38,9 @@ public class VolunteerRepository : IVolunteerRepository
 		return volunteer;
 	}
 
-	public async Task<Result<Volunteer, Error>> GetByFullName(FullName fullName)
+	public async Task<Result<Volunteer, Error>> GetByFullName(PhoneNumber phoneNumber)
 	{
-		var volunteer = await _context.Volunteers.FirstOrDefaultAsync(v => v.FullName == fullName);
+		var volunteer = await _context.Volunteers.FirstOrDefaultAsync(v => v.PhoneNumber == phoneNumber);
 
 		if (volunteer == null)
 		{
