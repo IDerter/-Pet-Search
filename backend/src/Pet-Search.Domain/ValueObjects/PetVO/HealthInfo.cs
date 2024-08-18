@@ -1,4 +1,6 @@
-﻿namespace Pet_Search.Domain.ValueObjects.PetVO;
+﻿using Pet_Search.Domain.Shared;
+
+namespace Pet_Search.Domain.ValueObjects.PetVO;
 
 public record HealthInfo
 {

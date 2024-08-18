@@ -396,3 +396,5 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+backend/docker-compose.override.yml
+backend/docker-compose.yml

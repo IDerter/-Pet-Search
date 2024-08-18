@@ -22,15 +22,18 @@ public class VolunteerConfiguration : IEntityTypeConfiguration<Volunteer>
 		{
 			fb.Property(fb => fb.Name)
 			.IsRequired()
-			.HasMaxLength(Constants.MAX_LOW_LENGTH);
+			.HasMaxLength(Constants.MAX_LOW_LENGTH)
+			.HasColumnName("name");
 
 			fb.Property(fb => fb.Surname)
 			.IsRequired()
-			.HasMaxLength(Constants.MAX_LOW_LENGTH);
+			.HasMaxLength(Constants.MAX_LOW_LENGTH)
+			.HasColumnName("surname");
 
 			fb.Property(fb => fb.Patronymic)
 			.IsRequired()
-			.HasMaxLength(Constants.MAX_LOW_LENGTH);
+			.HasMaxLength(Constants.MAX_LOW_LENGTH)
+			.HasColumnName("patronymic");
 		});
 
 		builder.Property(v => v.Description)
