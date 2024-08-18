@@ -1,11 +1,12 @@
-﻿using Pet_Search.Domain.Entities.PetContext;
-using Pet_Search.Domain.Shared;
+﻿using CSharpFunctionalExtensions;
+using Pet_Search.Domain.Entities.PetContext;
 using Pet_Search.Domain.ValueObjects;
+using Pet_Search.Domain.Shared;
 using Pet_Search.Domain.ValueObjects.VolunteerVO;
 
 namespace Pet_Search.Domain.Entities.VolunteerContext;
 
-public class Volunteer : Entity<VolunteerId>
+public class Volunteer : Shared.Entity<VolunteerId>
 {
 	// Ef Core
 	private Volunteer(VolunteerId id) : base(id)
@@ -34,4 +35,19 @@ public class Volunteer : Entity<VolunteerId>
 	public SocialNetworkList? SocialNetworksList { get; private set; }
 	public RequisiteList? RequisiteList { get; private set; }
 	public List<Pet> PetsOwnedVolunteer { get; private set; } = [];
+
+	public static Result<Volunteer> Create(
+		VolunteerId id,
+		FullName fullName,
+		string description,
+		int ageExperience,
+		int petsFoundHomeQuantity,
+		int numberOfPetsLookingForHome, 
+		int numberOfPetsTreated, 
+		PhoneNumber phoneNumber
+		)
+	{
+		return new Volunteer(id, fullName, description, ageExperience, petsFoundHomeQuantity,
+			numberOfPetsLookingForHome, numberOfPetsTreated, phoneNumber);
+	}
 }
