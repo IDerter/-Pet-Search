@@ -38,7 +38,7 @@ public class VolunteerRepository : IVolunteerRepository
 		return volunteer;
 	}
 
-	public async Task<Result<Volunteer, Error>> GetByFullName(PhoneNumber phoneNumber)
+	public async Task<Result<Volunteer, Error>> GetByPhoneNumber(PhoneNumber phoneNumber)
 	{
 		var volunteer = await _context.Volunteers.FirstOrDefaultAsync(v => v.PhoneNumber == phoneNumber);
 

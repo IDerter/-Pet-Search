@@ -31,15 +31,24 @@ public class CreateVolunteerHandler
 			return phoneNumber.Error;
 		}
 
+		var volunteerResult = Volunteer.Create(
+			volunteerId,
+			fullName.Value,
+			request.Description,
+			request.AgeExperience,
+			request.PetsFoundHomeQuantity,
+			request.NumberOfPetsLookingForHome,
+			request.NumberOfPetsTreated,
+			phoneNumber.Value,
+			request.NetworkList,
+			request.RequisiteList);
 
-		var volunteerResult = Volunteer.Create(volunteerId, fullName.Value, request.Description, request.AgeExperience,
-			request.PetsFoundHomeQuantity, request.NumberOfPetsLookingForHome, request.NumberOfPetsTreated, phoneNumber.Value);
 		if (volunteerResult.IsFailure)
 		{
 			return Errors.General.NotFound(volunteerId.Value);
 		}
 
-		var volunteerExist = await _volunteerRepository.GetByFullName(phoneNumber.Value);
+		var volunteerExist = await _volunteerRepository.GetByPhoneNumber(phoneNumber.Value);
 		if (volunteerExist.IsSuccess)
 		{
 			return Errors.Volunteer.AlreadyExist();
@@ -48,8 +57,5 @@ public class CreateVolunteerHandler
 		await _volunteerRepository.Add(volunteerResult.Value, token);
 
 		return volunteerId.Value;
-		//валидация
-		//создание доменной модели
-		//сохранение в бд
 	}
 }

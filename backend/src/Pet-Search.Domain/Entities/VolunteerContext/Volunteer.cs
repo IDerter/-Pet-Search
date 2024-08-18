@@ -13,8 +13,17 @@ public class Volunteer : Shared.Entity<VolunteerId>
 	{
 	}
 
-	private Volunteer(VolunteerId id, FullName fullName, string description, int ageExperience, int petsFoundHomeQuantity,
-		int numberOfPetsLookingForHome, int numberOfPetsTreated, PhoneNumber phoneNumber) : base(id)
+	private Volunteer(
+		VolunteerId id,
+		FullName fullName, 
+		string description,
+		int ageExperience,
+		int petsFoundHomeQuantity,
+		int numberOfPetsLookingForHome, 
+		int numberOfPetsTreated, 
+		PhoneNumber phoneNumber,
+		SocialNetworkList? socialNetworkList = default,
+		RequisiteList? requisiteList = default) : base(id)
 	{
 		FullName = fullName;
 		Description = description;
@@ -23,6 +32,8 @@ public class Volunteer : Shared.Entity<VolunteerId>
 		NumberOfPetsLookingForHome = numberOfPetsLookingForHome;
 		NumberOfPetsTreated = numberOfPetsTreated;
 		PhoneNumber = phoneNumber;
+		SocialNetworksList = socialNetworkList;
+		RequisiteList = requisiteList;
 	}
 
 	public FullName FullName { get; private set; }
@@ -44,10 +55,20 @@ public class Volunteer : Shared.Entity<VolunteerId>
 		int petsFoundHomeQuantity,
 		int numberOfPetsLookingForHome, 
 		int numberOfPetsTreated, 
-		PhoneNumber phoneNumber
-		)
+		PhoneNumber phoneNumber,
+		SocialNetworkList? socialNetworkList = default,
+		RequisiteList? requisiteList = default)
 	{
-		return new Volunteer(id, fullName, description, ageExperience, petsFoundHomeQuantity,
-			numberOfPetsLookingForHome, numberOfPetsTreated, phoneNumber);
+		return new Volunteer(
+			id,
+			fullName, 
+			description, 
+			ageExperience, 
+			petsFoundHomeQuantity,
+			numberOfPetsLookingForHome, 
+			numberOfPetsTreated, 
+			phoneNumber, 
+			socialNetworkList, 
+			requisiteList);
 	}
 }
