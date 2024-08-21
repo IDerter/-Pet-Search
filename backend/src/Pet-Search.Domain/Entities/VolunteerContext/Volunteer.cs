@@ -48,7 +48,7 @@ public class Volunteer : Shared.Entity<VolunteerId>
 	public RequisiteList? RequisiteList { get; private set; }
 	public IReadOnlyList<Pet> PetsOwnedVolunteer => _petsOwned;
 
-	public static Result<Volunteer> Create(
+	public static Result<Volunteer, Error> Create(
 		VolunteerId id,
 		FullName fullName,
 		string description,
@@ -71,5 +71,12 @@ public class Volunteer : Shared.Entity<VolunteerId>
 			phoneNumber,
 			socialNetworkList,
 			requisiteList);
+	}
+
+	public UnitResult<Error> AddPetsOwned(Pet pet)
+	{
+		_petsOwned.Add(pet);
+
+		return Result.Success<Error>();
 	}
 }

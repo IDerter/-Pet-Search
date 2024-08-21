@@ -1,11 +1,11 @@
-﻿using Pet_Search.Domain.Entities.BreedContext;
+﻿using CSharpFunctionalExtensions;
 using Pet_Search.Domain.Shared;
 using Pet_Search.Domain.ValueObjects;
 using Pet_Search.Domain.ValueObjects.PetVO;
 
 namespace Pet_Search.Domain.Entities.PetContext;
 
-public class Pet : Entity<PetId>
+public class Pet : Shared.Entity<PetId>
 {
 	private readonly List<PetPhoto> _petPhotos = [];
 	// Ef Core
@@ -46,4 +46,11 @@ public class Pet : Entity<PetId>
 	public RequisiteList? RequisiteList { get; private set; }
 	public DateTime CreatedDate { get; private set; } = DateTime.Now;
 	public IReadOnlyList<PetPhoto> PetPhotos => _petPhotos;
+
+	public UnitResult<Error> AddPetPhoto(PetPhoto photo)
+	{
+		_petPhotos.Add(photo);
+
+		return Result.Success<Error>();
+	}
 }

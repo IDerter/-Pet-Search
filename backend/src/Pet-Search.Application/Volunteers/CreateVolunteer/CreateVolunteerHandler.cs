@@ -31,6 +31,12 @@ public class CreateVolunteerHandler
 			return phoneNumber.Error;
 		}
 
+		var volunteerExist = await _volunteerRepository.GetByPhoneNumber(phoneNumber.Value);
+		if (volunteerExist.IsSuccess)
+		{
+			return Errors.Volunteer.AlreadyExist();
+		}
+
 		var requisitesResult = request.RequisitesDto?.Select(r => Requisite.Create(r.Name, r.Description)).ToList();
 
 		if (requisitesResult != null && requisitesResult.Any(r => r.IsFailure))
@@ -60,13 +66,7 @@ public class CreateVolunteerHandler
 
 		if (volunteerResult.IsFailure)
 		{
-			return Errors.General.NotFound(volunteerId.Value);
-		}
-
-		var volunteerExist = await _volunteerRepository.GetByPhoneNumber(phoneNumber.Value);
-		if (volunteerExist.IsSuccess)
-		{
-			return Errors.Volunteer.AlreadyExist();
+			return volunteerResult.Error;
 		}
 
 		await _volunteerRepository.Add(volunteerResult.Value, token);
