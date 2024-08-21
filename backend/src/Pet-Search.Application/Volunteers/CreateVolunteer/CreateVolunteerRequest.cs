@@ -1,4 +1,5 @@
-﻿using Pet_Search.Domain.ValueObjects;
+﻿using Pet_Search.Application.Dto;
+using Pet_Search.Domain.ValueObjects;
 using Pet_Search.Domain.ValueObjects.VolunteerVO;
 
 namespace Pet_Search.Application.Volunteers.CreateVolunteer;
@@ -13,7 +14,7 @@ public record CreateVolunteerRequest(
 	string AreaCode, 
 	int PetsFoundHomeQuantity,
 	int NumberOfPetsLookingForHome, 
-	int NumberOfPetsTreated, 
-	SocialNetworkList? NetworkList = default, 
-	RequisiteList? RequisiteList = default);
+	int NumberOfPetsTreated,
+	IEnumerable<SocialNetworkDto> SocialNetworksDto,
+	IEnumerable<RequisiteDto> RequisitesDto);
 

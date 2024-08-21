@@ -4,7 +4,7 @@
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
     <DockerPublishLocally>False</DockerPublishLocally>
-    <ProjectGuid>d9ee0db0-87f7-46fb-8770-5f6e8ea3f73b</ProjectGuid>
+    <ProjectGuid>2738e5fb-a24d-4e67-961b-04040024629d</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
     <DockerServiceName>pet-search.api</DockerServiceName>
