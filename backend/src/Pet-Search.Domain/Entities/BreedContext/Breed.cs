@@ -5,6 +5,7 @@ namespace Pet_Search.Domain.Entities.BreedContext;
 
 public class Breed : Entity<BreedId>
 {
+	// Ef Core
 	private Breed(BreedId id) : base(id)
 	{
 	}

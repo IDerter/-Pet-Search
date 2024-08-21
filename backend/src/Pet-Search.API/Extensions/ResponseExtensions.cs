@@ -29,12 +29,9 @@ public static class ResponseExtensions
 		};
 	}
 
-	public static ActionResult<T> ToResponse<T>(this Result<T, Error> result)
+	public static ActionResult<T> ToResponse<T>(this Error error)
 	{
-		if (result.IsSuccess)
-			return new OkObjectResult(Envelope.Ok(result.Value));
-
-		var statusCode = result.Error.Type switch
+		var statusCode = error.Type switch
 		{
 			ErrorType.Validation => StatusCodes.Status400BadRequest,
 			ErrorType.NotFound => StatusCodes.Status404NotFound,
@@ -43,7 +40,7 @@ public static class ResponseExtensions
 			_ => StatusCodes.Status500InternalServerError,
 		};
 
-		var envelope = Envelope.Error(result.Error);
+		var envelope = Envelope.Error(error);
 
 		return new ObjectResult(envelope)
 		{

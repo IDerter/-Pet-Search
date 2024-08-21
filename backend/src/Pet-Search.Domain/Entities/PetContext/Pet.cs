@@ -1,4 +1,5 @@
-﻿using Pet_Search.Domain.Shared;
+﻿using Pet_Search.Domain.Entities.BreedContext;
+using Pet_Search.Domain.Shared;
 using Pet_Search.Domain.ValueObjects;
 using Pet_Search.Domain.ValueObjects.PetVO;
 
@@ -6,6 +7,7 @@ namespace Pet_Search.Domain.Entities.PetContext;
 
 public class Pet : Entity<PetId>
 {
+	private readonly List<PetPhoto> _petPhotos = [];
 	// Ef Core
 	private Pet(PetId id) : base(id)
 	{
@@ -43,5 +45,5 @@ public class Pet : Entity<PetId>
 	public Status Status { get; private set; } = new Status();
 	public RequisiteList? RequisiteList { get; private set; }
 	public DateTime CreatedDate { get; private set; } = DateTime.Now;
-	public List<PetPhoto> PetPhotos { get; private set; } = [];
+	public IReadOnlyList<PetPhoto> PetPhotos => _petPhotos;
 }

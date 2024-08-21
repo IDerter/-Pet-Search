@@ -8,6 +8,7 @@ namespace Pet_Search.Domain.Entities.VolunteerContext;
 
 public class Volunteer : Shared.Entity<VolunteerId>
 {
+	private readonly List<Pet> _petsOwned = [];
 	// Ef Core
 	private Volunteer(VolunteerId id) : base(id)
 	{
@@ -15,12 +16,12 @@ public class Volunteer : Shared.Entity<VolunteerId>
 
 	private Volunteer(
 		VolunteerId id,
-		FullName fullName, 
+		FullName fullName,
 		string description,
 		int ageExperience,
 		int petsFoundHomeQuantity,
-		int numberOfPetsLookingForHome, 
-		int numberOfPetsTreated, 
+		int numberOfPetsLookingForHome,
+		int numberOfPetsTreated,
 		PhoneNumber phoneNumber,
 		SocialNetworkList? socialNetworkList = default,
 		RequisiteList? requisiteList = default) : base(id)
@@ -45,7 +46,7 @@ public class Volunteer : Shared.Entity<VolunteerId>
 	public PhoneNumber PhoneNumber { get; private set; }
 	public SocialNetworkList? SocialNetworksList { get; private set; }
 	public RequisiteList? RequisiteList { get; private set; }
-	public List<Pet> PetsOwnedVolunteer { get; private set; } = [];
+	public IReadOnlyList<Pet> PetsOwnedVolunteer => _petsOwned;
 
 	public static Result<Volunteer> Create(
 		VolunteerId id,
@@ -53,22 +54,22 @@ public class Volunteer : Shared.Entity<VolunteerId>
 		string description,
 		int ageExperience,
 		int petsFoundHomeQuantity,
-		int numberOfPetsLookingForHome, 
-		int numberOfPetsTreated, 
+		int numberOfPetsLookingForHome,
+		int numberOfPetsTreated,
 		PhoneNumber phoneNumber,
 		SocialNetworkList? socialNetworkList = default,
 		RequisiteList? requisiteList = default)
 	{
 		return new Volunteer(
 			id,
-			fullName, 
-			description, 
-			ageExperience, 
+			fullName,
+			description,
+			ageExperience,
 			petsFoundHomeQuantity,
-			numberOfPetsLookingForHome, 
-			numberOfPetsTreated, 
-			phoneNumber, 
-			socialNetworkList, 
+			numberOfPetsLookingForHome,
+			numberOfPetsTreated,
+			phoneNumber,
+			socialNetworkList,
 			requisiteList);
 	}
 }

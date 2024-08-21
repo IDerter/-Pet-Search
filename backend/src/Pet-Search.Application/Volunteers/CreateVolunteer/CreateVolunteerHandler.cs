@@ -33,19 +33,18 @@ public class CreateVolunteerHandler
 
 		var requisitesResult = request.RequisitesDto?.Select(r => Requisite.Create(r.Name, r.Description)).ToList();
 
-		if (requisitesResult!= null && requisitesResult.Any(r => r.IsFailure))
+		if (requisitesResult != null && requisitesResult.Any(r => r.IsFailure))
 		{
 			return Errors.General.ValueIsRequired("Name or Descriptions");
 		}
 		var requisites = new RequisiteList(requisitesResult?.Select(r => r.Value).ToList());
 
 		var socialNetworksResult = request.SocialNetworksDto?.Select(s => SocialNetwork.Create(s.Link, s.Name)).ToList();
-		if (socialNetworksResult!=null && socialNetworksResult.Any(r => r.IsFailure))
+		if (socialNetworksResult != null && socialNetworksResult.Any(r => r.IsFailure))
 		{
 			return Errors.General.ValueIsRequired("Link or Name");
 		}
 		var socialNetworks = new SocialNetworkList(socialNetworksResult?.Select(s => s.Value).ToList());
-
 
 		var volunteerResult = Volunteer.Create(
 			volunteerId,

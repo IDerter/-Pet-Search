@@ -15,7 +15,7 @@ namespace Pet_Search.API.Controllers
 		{
 			var result = await handler.HandleAsync(request, cancellationToken);
 
-			return result.ToResponse();
+			return CreatedAtAction("Create", result.Value);
 		}
 	}
 }
