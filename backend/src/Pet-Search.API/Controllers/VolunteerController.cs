@@ -1,12 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Pet_Search.API.Extensions;
+using Pet_Search.API.Response;
 using Pet_Search.Application.Volunteers.CreateVolunteer;
 
 namespace Pet_Search.API.Controllers
 {
-	[ApiController]
-	[Route("[controller]")]
-	public class VolunteerController : ControllerBase
+	public class VolunteerController : ApplicationController
 	{
 		[HttpPost]
 		public async Task<ActionResult<Guid>> Create(
@@ -16,12 +15,7 @@ namespace Pet_Search.API.Controllers
 		{
 			var result = await handler.HandleAsync(request, cancellationToken);
 
-			if (result.IsFailure)
-			{
-				return result.Error.ToResponse();
-			}
-
-			return Ok(result.Value);
+			return result.ToResponse();
 		}
 	}
 }

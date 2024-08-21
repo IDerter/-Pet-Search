@@ -322,7 +322,7 @@ namespace Pet_Search.Infrastructure.Migrations
                                 .HasForeignKey("PetId")
                                 .HasConstraintName("fk_pets_pets_pet_id");
 
-                            b1.OwnsMany("Pet_Search.Domain.ValueObjects.Requisites", "Requisites", b2 =>
+                            b1.OwnsMany("Pet_Search.Domain.ValueObjects.Requisite", "Requisites", b2 =>
                                 {
                                     b2.Property<Guid>("RequisiteListPetId")
                                         .HasColumnType("uuid");
@@ -383,7 +383,7 @@ namespace Pet_Search.Infrastructure.Migrations
                                 .HasForeignKey("VolunteerId")
                                 .HasConstraintName("fk_volunteers_volunteers_id");
 
-                            b1.OwnsMany("Pet_Search.Domain.ValueObjects.Requisites", "Requisites", b2 =>
+                            b1.OwnsMany("Pet_Search.Domain.ValueObjects.Requisite", "Requisites", b2 =>
                                 {
                                     b2.Property<Guid>("RequisiteListVolunteerId")
                                         .HasColumnType("uuid");

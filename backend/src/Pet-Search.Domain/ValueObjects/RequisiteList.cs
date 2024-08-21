@@ -2,5 +2,14 @@
 
 public record RequisiteList
 {
-    public List<Requisites> Requisites { get; } = [];
+	public RequisiteList()
+	{
+
+	}
+	public RequisiteList(List<Requisite> requisites)
+	{
+		Requisites = requisites;
+	}
+
+	public List<Requisite> Requisites { get; } = [];
 }
